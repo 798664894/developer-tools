@@ -10,11 +10,10 @@
       <el-menu
         default-active="1"
         class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b"
+        @select="selectTab"
       >
         <el-menu-item index="1">
           <i class="el-icon-menu"></i>
@@ -26,7 +25,9 @@
         </el-menu-item>
       </el-menu>
     </div>
-    <div class="content-container flex flex-v"></div>
+    <div class="content-container flex flex-v">
+      <jsonFormat v-if="activeModule === '1'" />
+    </div>
     <gFoot />
   </div>
 </template>
@@ -35,13 +36,21 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { State, Action } from 'vuex-class'
 import gFoot from '../../components/g-foot.vue'
+import jsonFormat from './components/jsonFormat.vue'
 
 @Component({
   name: 'index',
-  components: { gFoot }
+  components: { gFoot, jsonFormat }
 })
 export default class redirect extends Vue {
-  created(): void {}
+  private activeModule: string = '1' //激活的模块
+
+  /**
+   * tab点击事件
+   */
+  private selectTab(index: any, indexPath: any[]): void {
+    this.activeModule = index
+  }
 }
 </script>
 
@@ -64,6 +73,7 @@ export default class redirect extends Vue {
     width: 100%;
     height: 100%;
     margin-left: 5px;
+    padding-bottom: 30px;
   }
   .g-foot {
     position: absolute;
