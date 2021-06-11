@@ -23,14 +23,7 @@ export default class redirect extends Vue {
   @Action resetAreaCode
 
   created(): void {
-    // 如果把重定向放到login中，容易渲染login页面，并有闪烁效果，所以单独提取出来，提升用户体验
-    if (this.currentAreaCode === '') {
-      this.$router.push('/login')
-    } else {
-      // 每次默认
-      this.resetAreaCode()
-      this.$router.push('/wardWhiteboard')
-    }
+    this.$router.push('/tools')
   }
 }
 </script>

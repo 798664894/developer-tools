@@ -33,6 +33,12 @@ const router = new Router({
       meta: { title: '登录' },
       component: () => import('./views/login/index.vue')
     },
+    {
+      path: '/tools',
+      name: 'tools',
+      meta: { title: '主页' },
+      component: () => import('./views/tools/index.vue')
+    },
     // 具有公共头部，脚部的放在layout的children中
     {
       path: '/',
@@ -187,15 +193,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  // yljgdm,是否存在,不存在就跳转登录页面
-  if (
-    (store.state.yljgdm === '' || store.state.token === '') &&
-    to.fullPath !== '/login'
-  ) {
-    next({ path: '/login' })
-  } else {
-    next()
-  }
+  next()
 })
 
 export default router

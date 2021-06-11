@@ -4,7 +4,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const projectName = 'panorama'
+const projectName = 'developerTools'
 
 module.exports = {
   // 基本路径

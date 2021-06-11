@@ -9,10 +9,9 @@
 
 <template>
   <div class="g-foot">
-    <span class="flush-time">截至{{ subDataFlushTime }}数据</span>
-    <span class="version" @click="setSelectAreaShow(true)">
-      卫视界可视化诊疗软件 {{ version }}
-    </span>
+    <span>kira的开发工具网站&nbsp;&nbsp;&nbsp;</span>
+    <span>皖ICP备</span>
+    <a class="web-href" target="_blank" href="https://beian.miit.gov.cn/">18015002号-1</a>
   </div>
 </template>
 
@@ -24,31 +23,19 @@ import state from '../store/state'
 @Component({
   name: 'gFoot'
 })
-export default class gFoot extends Vue {
-  @State dataFlushTime
-  private version: string = 'V3.4.1911'
-  @Action setSelectAreaShow
-
-  get subDataFlushTime() {
-    return this.dataFlushTime ? this.dataFlushTime.substring(11, 16) : '--'
-  }
-}
+export default class gFoot extends Vue {}
 </script>
 <style lang="scss" scoped>
 .g-foot {
   height: 40px;
   line-height: 40px;
-  font-size: 16px;
+  font-size: 13px;
   color: #999;
-  text-align: right;
+  text-align: center;
   padding-right: 20px;
-  .version {
-    cursor: pointer;
-    @include puhui-m;
-  }
-  .flush-time {
-    position: absolute;
-    left: 20px;
+  .web-href {
+    color: #999;
+    text-decoration: underline;
   }
 }
 </style>
