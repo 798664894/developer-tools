@@ -10,21 +10,17 @@
       class="text-input"
       type="textarea"
       placeholder="请输入内容"
-      v-model="textarea"
+      v-model="toFormatStr"
     >
     </el-input>
     <div class="button-div flex flex-align-center">
-      <el-button type="info" plain class="format-button"
+      <el-button type="primary" class="format-button" @click="formatJson"
         >格式化 <i class="el-icon-d-arrow-right"></i
       ></el-button>
     </div>
-    <el-input
-      readonly="true"
-      class="text-input"
-      type="textarea"
-      v-model="textarea"
-    >
-    </el-input>
+    <div class="formated-area">
+      <pre class="pre-area">{{ formatedStr }}</pre>
+    </div>
   </div>
 </template>
 
@@ -35,8 +31,17 @@ import { State, Action } from 'vuex-class'
 @Component({
   name: 'jsonFormat'
 })
-export default class redirect extends Vue {
-  created(): void {}
+export default class jsonFormat extends Vue {
+  private toFormatStr: string = ''
+  private formatedStr: object = ''
+
+  private formatJson() {
+    try {
+      this.formatedStr = JSON.stringify(JSON.parse(this.toFormatStr), null, 4)
+    } catch (e) {
+      this.formatedStr = this.toFormatStr
+    }
+  }
 }
 </script>
 
@@ -55,6 +60,20 @@ export default class redirect extends Vue {
   .el-textarea__inner {
     min-height: 98% !important;
     max-height: 98% !important;
+  }
+  .formated-area {
+    width: 100%;
+    border-radius: 4px;
+    border: 0.00521rem solid #dcdfe6;
+    background: white;
+    height: 98%;
+  }
+  .pre-area {
+    height: 100%;
+    width: 100%;
+    white-space: pre-wrap;
+    -webkit-user-select: text;
+    overflow: auto;
   }
 }
 </style>

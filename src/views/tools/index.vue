@@ -19,9 +19,13 @@
           <i class="el-icon-menu"></i>
           <span slot="title">JSON格式化</span>
         </el-menu-item>
-        <el-menu-item index="3">
+        <el-menu-item index="2">
           <i class="el-icon-setting"></i>
           <span slot="title">时间戳转换</span>
+        </el-menu-item>
+        <el-menu-item index="3">
+          <i class="el-icon-setting"></i>
+          <span slot="title">身份证号生成</span>
         </el-menu-item>
       </el-menu>
     </div>
@@ -57,16 +61,16 @@ export default class redirect extends Vue {
 <style lang="scss">
 .index {
   height: 90%;
-  padding-top: 10px;
   .menu-container {
     width: 200px;
     box-shadow: 0 2px 4px rgba(30, 60, 114, 0.6);
     border-radius: 4px;
-    margin: 0 2px 10px;
+    margin: 10px 2px 10px;
     overflow: auto;
     height: 100%;
   }
   .content-container {
+    margin-top: 10px;
     box-shadow: 0 2px 4px rgba(30, 60, 114, 0.6);
     border-radius: 4px;
     overflow: hidden;
