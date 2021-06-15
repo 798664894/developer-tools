@@ -31,6 +31,7 @@
     </div>
     <div class="content-container flex flex-v">
       <jsonFormat v-if="activeModule === '1'" />
+      <div v-else class="coding">即将上线，敬请期待</div>
     </div>
     <gFoot />
   </div>
@@ -88,6 +89,14 @@ export default class redirect extends Vue {
   .el-menu-vertical-demo {
     height: 100%;
     border-right: none;
+  }
+  .coding {
+    font-size: 30px;
+    width: 100%;
+    height: 100%;
+    font-weight: 900;
+    line-height: 30;
+    text-align: center;
   }
 }
 </style>
