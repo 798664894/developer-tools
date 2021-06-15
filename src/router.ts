@@ -163,12 +163,6 @@ const router = new Router({
             import('./views/treatInfo/pages/inspectionReports.vue')
         },
         {
-          path: 'nursingDoc',
-          name: 'nursingDoc',
-          meta: { title: '护理文书' },
-          component: () => import('./views/treatInfo/pages/nursingDoc.vue')
-        },
-        {
           path: 'clinicalDiagnose',
           name: 'clinicalDiagnose',
           meta: { title: '临床诊断' },
