@@ -33,7 +33,7 @@ import { State, Action } from 'vuex-class'
 })
 export default class jsonFormat extends Vue {
   private toFormatStr: string = ''
-  private formatedStr: object = ''
+  private formatedStr: string = ''
 
   private formatJson() {
     try {
