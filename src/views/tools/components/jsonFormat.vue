@@ -26,7 +26,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { State, Action } from 'vuex-class'
 
 @Component({
   name: 'jsonFormat'

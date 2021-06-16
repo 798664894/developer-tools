@@ -12,16 +12,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { State, Action } from 'vuex-class'
 
 @Component({
   name: 'redirect'
 })
 export default class redirect extends Vue {
-  @State currentAreaCode
-
-  @Action resetAreaCode
-
   created(): void {
     this.$router.push('/tools')
   }

@@ -120,34 +120,6 @@
   &.config-content { background-image: url('../assets/images/config-content.png') }
 }
 
-.module-icon {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-size: cover;
-  // 危重
-  &.module-WZ { @include module-icon-wz; }
-  // 病区概览
-  &.module-BQGL { @include module-icon-bqgl; }
-  // 分娩
-  &.module-FM { @include module-icon-fm; }
-  // 出区
-  &.module-CQ { @include module-icon-cq; }
-  // 床位列表
-  &.module-CWLB { @include module-icon-cwlb; }
-  // 预约检查
-  &.module-YYJC { @include module-icon-yyjc; }
-  // 患者分组
-  &.module-HZFZ { @include module-icon-hzfz; }
-  // 病区关注
-  &.module-BQGZ { @include module-icon-bqgz; }
-  // 手术排期
-  &.module-SSPQ { @include module-icon-sspq; }
-  // 入区
-  &.module-RQ { @include module-icon-rq; }
-  // 新生儿
-  &.module-XSE { @include module-icon-xse; }
-}
 
 .btn-group {
   flex-wrap: wrap;
