@@ -4,7 +4,9 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const projectName = 'developerTools'
+const webpack = require('webpack')
 
 module.exports = {
   // 基本路径
@@ -24,9 +26,13 @@ module.exports = {
       .set('components', resolve('src/components'))
       .set('api', resolve('src/api'))
   },
-  configureWebpack: () => {},
+  configureWebpack: {
+    plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
+    optimization: { minimizer: [new UglifyJsPlugin()] }
+  },
   // 生产环境是否生成 sourceMap 文件
   productionSourceMap: false,
+
   // css相关配置
   css: {
     // 是否使用css分离插件 ExtractTextPlugin
@@ -57,18 +63,6 @@ module.exports = {
     hot: true,
     hotOnly: false, // https:{type:Boolean}
     disableHostCheck: true,
-    // proxy: null,                                // 设置代理
-    // proxy: 'http://localhost:4000'           // 配置跨域处理,只有一个代理
-    // proxy: {                                 // 配置多个代理
-    //     '/api': {
-    //         target: '<url>',
-    //         ws: true,
-    //         changeOrigin: true
-    //     },
-    //     '/foo': {
-    //         target: '<other_url>'
-    //     }
-    // }
     historyApiFallback: {
       rewrites: [
         {

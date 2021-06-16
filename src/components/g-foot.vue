@@ -11,14 +11,14 @@
   <div class="g-foot">
     <span>kira的开发工具网站&nbsp;&nbsp;&nbsp;</span>
     <span>皖ICP备</span>
-    <a class="web-href" target="_blank" href="https://beian.miit.gov.cn/">18015002号-1</a>
+    <a class="web-href" target="_blank" href="https://beian.miit.gov.cn/"
+      >18015002号-1</a
+    >
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { State, Action } from 'vuex-class'
-import state from '../store/state'
 
 @Component({
   name: 'gFoot'
