@@ -25,6 +25,7 @@
     "moment": "^2.24.0",
     "postcss-px2rem": "^0.3.0",
     "postcss-pxtorem": "^4.0.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.1.0",
     "vue-property-decorator": "^8.2.1",

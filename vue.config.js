@@ -4,7 +4,9 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const projectName = 'developerTools'
+const webpack = require('webpack')
 
 module.exports = {
   // 基本路径
@@ -24,7 +26,10 @@ module.exports = {
       .set('components', resolve('src/components'))
       .set('api', resolve('src/api'))
   },
-  configureWebpack: () => {},
+  configureWebpack: {
+    plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
+    optimization: { minimizer: [new UglifyJsPlugin()] }
+  },
   // 生产环境是否生成 sourceMap 文件
   productionSourceMap: false,
 
