@@ -73,6 +73,7 @@ export default class jsonFormat extends Vue {
     white-space: pre-wrap;
     -webkit-user-select: text;
     overflow: auto;
+    -webkit-user-modify: read-write;
   }
 }
 </style>
