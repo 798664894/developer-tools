@@ -31,6 +31,7 @@
     </div>
     <div class="content-container flex flex-v">
       <jsonFormat v-if="activeModule === '1'" />
+      <cardNo v-else-if="activeModule === '3'" />
       <div v-else class="coding">即将上线，敬请期待</div>
     </div>
     <gFoot />
@@ -41,10 +42,11 @@
 import { Component, Vue } from 'vue-property-decorator'
 import gFoot from '../../components/g-foot.vue'
 import jsonFormat from './components/jsonFormat.vue'
+import cardNo from './components/cardNoBuilder.vue'
 
 @Component({
   name: 'index',
-  components: { gFoot, jsonFormat }
+  components: { gFoot, jsonFormat, cardNo }
 })
 export default class redirect extends Vue {
   private activeModule: string = '1' //激活的模块

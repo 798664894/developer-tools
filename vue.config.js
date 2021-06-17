@@ -28,7 +28,13 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
-    optimization: { minimizer: [new UglifyJsPlugin()] }
+    optimization: { minimizer: [new UglifyJsPlugin()] },
+    externals: {
+      vue: 'Vue',
+      vuex: 'Vuex',
+      'element-ui': 'ELEMENT',
+      'vue-router': 'VueRouter'
+    }
   },
   // 生产环境是否生成 sourceMap 文件
   productionSourceMap: false,
