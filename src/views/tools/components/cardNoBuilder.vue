@@ -70,6 +70,18 @@
       </el-select>
     </div>
     <div class="row">
+      <span class="title">生成数量</span>
+      <el-select v-model="listNum" placeholder="请选择">
+        <el-option
+          v-for="number in NumList"
+          :key="number"
+          :label="number"
+          :value="number"
+        >
+        </el-option>
+      </el-select>
+    </div>
+    <div class="row">
       <el-button type="danger" @click="buildCardNo">开始生成</el-button>
     </div>
     <div class="cardNo flex">
@@ -83,6 +95,13 @@
           {{ cardNo }}
         </div>
       </div>
+      <el-button
+        class="copy"
+        v-show="showPs"
+        v-clipboard:copy="allNumList"
+        v-clipboard:success="onCopy"
+        >复制全部</el-button
+      >
     </div>
     <div class="ps-info" v-show="showPs">
       <span class="ps-title">说明：</span
@@ -93,11 +112,14 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { Message } from 'element-ui'
 
 @Component({
   name: 'cardNoBuilder'
 })
 export default class cardNoBuilder extends Vue {
+  private listNum: number = 10
+  private NumList: number[] = [10, 20, 30, 40, 50, 60, 70, 80, 90, 99]
   private showPs: boolean = false
   private sex: string = 'm'
   private birthday: string = '1996-03-06'
@@ -4287,21 +4309,11 @@ export default class cardNoBuilder extends Vue {
     m: '男',
     f: '女'
   }
-  private policeNum: string[] = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10'
-  ]
   private leftCardNoList: string[] = []
   private rightCardNoList: string[] = []
-
+  private maleNumList: string[] = ['1', '3', '5', '7', '9']
+  private femaleNumList: string[] = ['2', '4', '6', '8', '0']
+  private allNumList: string[] = []
   get cityObj(): object {
     const map = new Map(Object.entries(this.cityJson))
     return map.get(this.provience)
@@ -4310,6 +4322,20 @@ export default class cardNoBuilder extends Vue {
   get countyObj(): object {
     const map = new Map(Object.entries(this.countyJson))
     return map.get(this.city)
+  }
+
+  private getPoliceNum(num: number): string {
+    if (num < 10) {
+      return '0' + num
+    }
+    return num.toString()
+  }
+
+  private onCopy(): void {
+    Message({
+      message: '内容已复制到剪贴板',
+      type: 'success'
+    })
   }
 
   private clickProvience(): void {
@@ -4333,14 +4359,20 @@ export default class cardNoBuilder extends Vue {
     let cardNo: string = ''
     cardNo += this.country
     cardNo += this.birthday.replaceAll('-', '')
-    for (let i = 0; i < this.policeNum.length; i++) {
-      let num = cardNo + this.policeNum[i]
+    for (let i = 0; i < this.listNum; i++) {
+      let num = cardNo + this.getPoliceNum(i + 1)
+      if (this.sex === 'm') {
+        num += this.maleNumList[i % 5]
+      } else {
+        num += this.femaleNumList[i % 5]
+      }
       num += this.cnNewID(num)
-      if (i < 5) {
+      if (i < this.listNum / 2) {
         this.leftCardNoList.push(num)
       } else {
         this.rightCardNoList.push(num)
       }
+      this.allNumList.push(num)
     }
     this.showPs = true
   }
@@ -4350,7 +4382,7 @@ export default class cardNoBuilder extends Vue {
     let arrValid = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2]
     let sum = 0,
       idx
-    for (let j = 0; j < 16; j++) {
+    for (let j = 0; j < 17; j++) {
       sum += parseInt(cardNo[j], 10) * arrExp[j]
     }
     return arrValid[sum % 11]
@@ -4372,13 +4404,15 @@ export default class cardNoBuilder extends Vue {
     margin-right: 10px;
   }
   .cardNo {
-    width: 100%;
+    width: 72%;
     text-align: center;
     font-size: larger;
     margin-top: 50px;
+    max-height: 300px;
+    overflow: auto;
   }
   .carNo-list {
-    width: 20%;
+    width: 34%;
     div {
       user-select: text;
       margin-top: 5px;
@@ -4389,11 +4423,16 @@ export default class cardNoBuilder extends Vue {
   }
   .ps-info {
     margin-left: 250px;
-    margin-top: 100px;
+    margin-top: 80px;
   }
   .ps-title {
     font-size: 27px;
     color: brown;
+  }
+  .copy {
+    position: absolute;
+    margin-top: 7px;
+    right: 520px;
   }
 }
 </style>
