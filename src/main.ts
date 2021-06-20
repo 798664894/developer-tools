@@ -22,9 +22,10 @@ Vue.prototype.$config = window.CONFIG
 
 import 'amfe-flexible/index.js'
 import ElementUI from 'element-ui'
+import VueClipboard from 'vue-clipboard2'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI, { size: 'medium', zIndex: 3000 })
-
+Vue.use(VueClipboard)
 Vue.config.productionTip = false
 
 // 实际打包时应该不引入mock
