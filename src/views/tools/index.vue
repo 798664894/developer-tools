@@ -27,12 +27,17 @@
           <i class="el-icon-setting"></i>
           <span slot="title">身份证号生成</span>
         </el-menu-item>
+        <el-menu-item index="4">
+          <i class="el-icon-setting"></i>
+          <span slot="title">文本对比</span>
+        </el-menu-item>
       </el-menu>
     </div>
     <div class="content-container flex flex-v">
       <jsonFormat v-if="activeModule === '1'" />
       <timestamp v-else-if="activeModule === '2'" />
       <cardNo v-else-if="activeModule === '3'" />
+      <textCompare v-else-if="activeModule === '4'" />
       <div v-else class="coding">即将上线，敬请期待</div>
     </div>
     <gFoot />
@@ -45,10 +50,11 @@ import gFoot from '../../components/g-foot.vue'
 import jsonFormat from './components/jsonFormat.vue'
 import cardNo from './components/cardNoBuilder.vue'
 import timestamp from './components/timestampFormat.vue'
+import textCompare from './components/textCompare.vue'
 
 @Component({
   name: 'index',
-  components: { gFoot, jsonFormat, cardNo, timestamp }
+  components: { gFoot, jsonFormat, cardNo, timestamp, textCompare }
 })
 export default class redirect extends Vue {
   private activeModule: string = '1' //激活的模块
